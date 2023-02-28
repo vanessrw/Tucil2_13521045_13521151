@@ -22,5 +22,5 @@ Hasil akhir dari program ini berupa output jarak serta titik terdekat, dan gamba
 2. Run `main.py`
 
 ## Contributors :
-> Fakhri Muhammad Mahendra - 13521045
-> Vanessa Rebecca Wiyono - 13521151
+#### [Fakhri Muhammad Mahendra - 13521045]
+#### [Vanessa Rebecca Wiyono - 13521151]
