@@ -2,45 +2,27 @@ import numpy as np
 from array_of_points import sorted_arr_divider, get_min_dist_from_2, get_points_in_hyperplane, get_closest_in_hyperplane
 from brute_force import brute_force_closest_pair
 import time
-from quicksort import*
-from array_of_points import*
 
 # global count_euclidean_distance
 
-def dcd_closest_pair(arr_of_points, dimension):
+def dnc_closest_pair(arr_of_points, dimension):
     size = len(arr_of_points)
 
     if size <= 3:
-        min_dist = np.inf
-        closest_points = []
-        for i in range(size - 1):
-            for j in range(i+1, size):
-                min_dist, closest_points = get_min_dist(min_dist, closest_points, arr_of_points[i], arr_of_points[j])
-        
-        return min_dist, closest_points
+        return brute_force_closest_pair(arr_of_points, size)
     
-    #arr_of_points = np.asarray(arr_of_points)
-    arr_of_points = quicksort(arr_of_points)
     x_median = arr_of_points[size//2][0]
-
-    # print(arr_of_points)
+    
     left_points, right_points = sorted_arr_divider(arr_of_points)
 
-    left_min_dist, left_closest_points  = dcd_closest_pair(left_points, dimension)
-    right_min_dist, right_closest_points= dcd_closest_pair(right_points, dimension)
+    left_min_dist, left_closest_points  = dnc_closest_pair(left_points, dimension)
+    right_min_dist, right_closest_points= dnc_closest_pair(right_points, dimension)
 
     min_dist, closest_points = get_min_dist_from_2(left_min_dist, left_closest_points, right_min_dist, right_closest_points)
 
-    left_hp = get_points_in_hyperplane(left_points, x_median, min_dist, lambda a, b: a < b)
-    right_hp = get_points_in_hyperplane(right_points, x_median, min_dist, lambda a, b: a <= b)
+    left_hp, right_hp = get_points_in_hyperplane(arr_of_points, x_median, min_dist)
 
     min_dist, array_of_closest = get_closest_in_hyperplane(left_hp, right_hp, min_dist, dimension, closest_points)
-
-    #return get_closest_in_hyperplane(left_hp, right_hp, min_dist, dimension, closest_points)
-    for i in range(len(array_of_closest)):
-        for j in range(len(array_of_closest[i])):
-            if isinstance(array_of_closest[i][j], np.ndarray):
-                array_of_closest[i][j] = array_of_closest[i][j].tolist()
 
     return min_dist, array_of_closest
 

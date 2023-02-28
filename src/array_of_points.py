@@ -39,18 +39,37 @@ def sorted_arr_divider(sorted_arr):
 
     return (under_median, over_median)
 
-def get_points_in_hyperplane(points, hp_axis, delta, func):
+def get_points_in_hyperplane(points, hp_axis, delta):
     size = len(points)
     left_hp = []
     right_hp = []
     in_hyperplane = []
 
     for i in range(size):
-        if (func(abs(hp_axis - points[i][0]), delta)):
-            in_hyperplane.append(points[i])
+        if hp_axis - delta <= points[i][0] < hp_axis:
+            left_hp.append(points[i])
+        elif hp_axis <= points[i][0] <= hp_axis + delta:
+            right_hp.append(points[i])
 
+    # for i in range(size):
+    #     if (func(abs(hp_axis - points[i][0]), delta)):
+    #         in_hyperplane.append(points[i])
 
-    return np.asarray(in_hyperplane)
+    # if (is_left):
+    #     for i in range(size):
+    #         if (hp_axis - points[i][0] < delta):
+    #             in_hyperplane.append(points)
+    #         else:
+    #             continue
+    
+    # else:
+    #     for i in range(size):
+    #         if (points[i][0] - hp_axis <= delta):
+    #             in_hyperplane.append(points)
+    #         else:
+    #             break
+
+    return left_hp, right_hp
 
 def get_closest_in_hyperplane(left_arr, right_arr, min_dist, dimension, array_of_closest):
     size_left = len(left_arr)

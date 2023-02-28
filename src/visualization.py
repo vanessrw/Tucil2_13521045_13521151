@@ -12,7 +12,9 @@ def visualization(points, arrPoints):
     selected_points = []
     other_points = []
     for point in points:
-        if point not in arrPoints:
+        if point in arrPoints:
+            selected_points.append(point) 
+        else:
             other_points.append(point)
     #for point in arrPoints:
         #selected_points.append(point)
@@ -54,7 +56,7 @@ def visualization(points, arrPoints):
     z_coords_other = [point[2] for point in other_points if isinstance(point, (list, tuple)) and len(point) >= 3]
 
     ax.scatter(x_coords_other, y_coords_other, z_coords_other, c='black')
-    ax.scatter(x_coords_selected, y_coords_selected, z_coords_selected, c='red')
+    ax.scatter(x_coords_selected, y_coords_selected, z_coords_selected, color='red')
 
     ax.set_title("Scatter Plot of {} Random Points in 3D".format(len(points)))
     ax.set_xlabel("X Coordinates")
