@@ -3,6 +3,25 @@ from array_of_points import*
 from point import*
 from main import random_point
 from bruteforce import closest_points
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from visualization import*
+import random
+import array as arr
+
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[0]
+        left = []
+        right = []
+        for i in range(1, len(arr)):
+            if arr[i][0] < pivot[0]:
+                left.append(arr[i])
+            else:
+                right.append(arr[i])
+        return quicksort(left) + [pivot] + quicksort(right)
 
 
 
@@ -19,11 +38,10 @@ def dcd_closest_pair(arr_of_points, dimension):
         return min_dist, closest_points
     
     arr_of_points = np.asarray(arr_of_points)
-    arr_of_points = arr_of_points[arr_of_points[:,0].argsort(kind='mergesort')]
+    arr_of_points = quicksort(arr_of_points[arr_of_points[:,0]])
     x_median = arr_of_points[size//2][0]
 
     # print(arr_of_points)
-    
     left_points, right_points = sorted_arr_divider(arr_of_points)
 
     left_min_dist, left_closest_points  = dcd_closest_pair(left_points, dimension)
@@ -34,32 +52,47 @@ def dcd_closest_pair(arr_of_points, dimension):
     left_hp = get_points_in_hyperplane(left_points, x_median, min_dist, lambda a, b: a < b)
     right_hp = get_points_in_hyperplane(right_points, x_median, min_dist, lambda a, b: a <= b)
 
-    return get_closest_in_hyperplane(left_hp, right_hp, min_dist, dimension, closest_points)
+    min_dist, array_of_closest = get_closest_in_hyperplane(left_hp, right_hp, min_dist, dimension, closest_points)
+
+    #return get_closest_in_hyperplane(left_hp, right_hp, min_dist, dimension, closest_points)
+    for i in range(len(array_of_closest)):
+        for j in range(len(array_of_closest[i])):
+            if isinstance(array_of_closest[i][j], np.ndarray):
+                array_of_closest[i][j] = array_of_closest[i][j].tolist()
+
+    return min_dist, array_of_closest
 
 
+def random_point():
+    points = []
+    n = random.randint(2, 100)
+    for i in range(n):
+        x = random.uniform(0, 1)
+        y = random.uniform(0, 1)
+        z = random.uniform(0, 1)
+        point = (x, y, z)
+        points.append(point)
+    return points
+
+def tuple_to_arr(arr):
+    arrPoints = []
+    for i in range(len(arr)):
+        arrPoints.append(arr[i][0])
+        arrPoints.append(arr[i][1])
+    return arrPoints
 
         
-
-    
-
-
+points = random_point()
+min_dist, array_of_closest = dcd_closest_pair(points, 3)
 
 
-
-
-
-
-# a = [[0, 1, 1], [0, 1, 2], [3, 2, 4], [0, 1, 6], [0, 2, 3], [1, 2, 3], [4, 3, 2]]
-for i in range(100):
-    a = random_point()
-
-    q, w, e, r, t = closest_points(a)
-    min_dist, arr = dcd_closest_pair(a, 3);
-    if (t != min_dist):
-        print(t)
-        print(min_dist)
-        break
-
-# print(t)
-# print(min_dist)
-# print(arr)
+dcd_closest_pair(points, 3)
+arrPoints = tuple_to_arr(array_of_closest)
+visualization(points, arrPoints)
+print("jarak terdekatnya adalah:", min_dist)
+print("pasangan titik terdekat adalah:", array_of_closest)
+#print(array_of_closest)
+#print(len(array_of_closest))
+#print(arrPoints)
+#print(len(arrPoints))
+#print(len(arrPoints1))
