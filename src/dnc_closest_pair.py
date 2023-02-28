@@ -24,7 +24,6 @@ def quicksort(arr):
         return quicksort(left) + [pivot] + quicksort(right)
 
 
-
 def dcd_closest_pair(arr_of_points, dimension):
     size = len(arr_of_points)
 
@@ -37,8 +36,8 @@ def dcd_closest_pair(arr_of_points, dimension):
         
         return min_dist, closest_points
     
-    arr_of_points = np.asarray(arr_of_points)
-    arr_of_points = quicksort(arr_of_points[arr_of_points[:,0]])
+    #arr_of_points = np.asarray(arr_of_points)
+    arr_of_points = quicksort(arr_of_points)
     x_median = arr_of_points[size//2][0]
 
     # print(arr_of_points)
@@ -86,7 +85,7 @@ points = random_point()
 min_dist, array_of_closest = dcd_closest_pair(points, 3)
 
 
-dcd_closest_pair(points, 3)
+#dcd_closest_pair(points, 3)
 arrPoints = tuple_to_arr(array_of_closest)
 visualization(points, arrPoints)
 print("jarak terdekatnya adalah:", min_dist)
