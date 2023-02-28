@@ -3,7 +3,7 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from sympy import true
+from sympy import false, true
 
 def jarak(p1, p2):
     return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2 + (p1[2] - p2[2])**2)
@@ -58,6 +58,15 @@ def visual(points):
 
     plt.show()
 
+def compare_point(point1, point2):
+    i = 0
+    equal = true
+    while i < len(point1) and equal:
+        if point1[i] != point2[i]:
+            equal = false
+        i+=1
+
+    return equal
 #print("Titik terdekat : ", closest_p1, "dan", closest_p2)
 #print("dengan jarak", min_dist)
 
@@ -68,10 +77,10 @@ for i in range(len(arrPoints1)):
     print("Titik terdekat ", i+1, ": ", arrPoints1[i], "dan", arrPoints2[i])
     print("dengan jarak", min_dist)
 
-def isClose(point):
-    arrPointsFin = np.concatenate((arrPoints1, arrPoints2))
-    is_in_array = np.isin(points, arrPointsFin).all(axis=1).any()
-    return is_in_array
+#def isClose(point):
+#    arrPointsFin = np.concatenate((arrPoints1, arrPoints2))
+#    is_in_array = np.isin(points, arrPointsFin).all(axis=1).any()
+#    return is_in_array
 
 def visualization(points):
     # Extract x, y, and z coordinates from the array of points
@@ -80,22 +89,58 @@ def visualization(points):
     z_coords = [point[2] for point in points]
 
     # Define the indices of the points to differentiate
-    indices_to_differentiate = []
-    if isClose(points):
-        indices_to_differentiate.append(points)
+    #indices_to_differentiate = []
+    #for point in points:
+    #    if isClose(point):
+    #        indices_to_differentiate.append(point)
+
 
     # Create a 3D scatter plot of the points
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(x_coords, y_coords, z_coords)
+    #ax.scatter(x_coords, y_coords, z_coords)
 
     #coloring
     #if isClose(points):
     #    ax.scatter(x_coords, y_coords, z_coords, color='red')
-    if not isClose(points):
-        ax.scatter(x_coords, y_coords, z_coords, color='black')
-    if isClose(points):
-        ax.scatter(x_coords, y_coords, z_coords, color='red')
+    #for point in points:
+    #    if np.isin(point, arrPoints1).any() or np.isin(point, arrPoints2).any():
+    #        ax.scatter(x_coords, y_coords, z_coords, color='black')
+    #    else:
+    #        ax.scatter(x_coords, y_coords, z_coords, color='red')
+
+    selected_points = []
+    other_points = []
+    for point in points:
+        if point in arrPoints1:
+            #ax.scatter(x_coords, y_coords, z_coords, c='red')
+            selected_points.append(point) 
+            #print('in arr1')
+        if point in arrPoints2:
+        #if compare_point(point, arrPoints1):
+            #ax.scatter(x_coords, y_coords, z_coords, c='red')
+            selected_points.append(point)
+            #print('in arr2')
+        else:
+            other_points.append(point)
+            #ax.scatter(x_coords, y_coords, z_coords, c='blue')
+    x_coords_selected = [point[0] for point in selected_points]
+    y_coords_selected = [point[1] for point in selected_points]
+    z_coords_selected = [point[2] for point in selected_points]
+
+    x_coords_other = [point[0] for point in other_points]
+    y_coords_other = [point[1] for point in other_points]
+    z_coords_other = [point[2] for point in other_points]
+
+    ax.scatter(x_coords_other, y_coords_other, z_coords_other, c='black')
+    ax.scatter(x_coords_selected, y_coords_selected, z_coords_selected, color='red')
+
+
+
+        #if not isClose(point):
+        #    ax.scatter(x_coords, y_coords, z_coords, color='black')
+        #if isClose(point):
+        #    ax.scatter(x_coords, y_coords, z_coords, color='red')
 
     # Set the title and axis labels
     ax.set_title("Scatter Plot of {} Random Points in 3D".format(len(points)))
