@@ -1,7 +1,7 @@
 from interface import get_dimension_and_n, output_format
 from array_of_points import get_random_points
 from brute_force import brute_force_closest_pair
-from divide_conquer import dnc_closest_pair
+from divide_conquer import*
 from visualization import visualization
 import time
 
@@ -28,7 +28,7 @@ def main():
     time_start = time.time()
 
 
-    dnc_min_distance, dnc_solution_pairs = dnc_closest_pair(arr_points, dimension)
+    dnc_min_distance, dnc_solution_pairs = dcd_closest_pair(arr_points, dimension)
     time_finish = time.time()
     dnc_time = time_finish - time_start
 
