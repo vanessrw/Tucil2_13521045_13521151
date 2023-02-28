@@ -36,7 +36,8 @@ def main():
     print("\nDengan pendekatan divide and conquer")
     output_format(dnc_time, dnc_min_distance, dnc_solution_pairs)
 
-    visualization(arr_points, bf_solution_pairs)
+    if dimension == 3:
+        visualization(arr_points, bf_solution_pairs)
 
 
 if __name__ == '__main__':
