@@ -1,5 +1,5 @@
 import numpy as np
-from array_of_points import get_min_dist, sorted_arr_divider, get_min_dist_from_2, get_points_in_hyperplane, get_closest_in_hyperplane, random_point
+from array_of_points import sorted_arr_divider, get_min_dist_from_2, get_points_in_hyperplane, get_closest_in_hyperplane
 from brute_force import brute_force_closest_pair
 import time
 
