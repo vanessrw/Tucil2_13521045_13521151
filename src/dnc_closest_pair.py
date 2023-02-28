@@ -1,98 +1,78 @@
 import numpy as np
-from array_of_points import*
-from point import*
-from main import random_point
-from bruteforce import closest_points
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-from visualization import*
-import random
-import array as arr
+from array_of_points import get_min_dist, sorted_arr_divider, get_min_dist_from_2, get_points_in_hyperplane, get_closest_in_hyperplane, random_point
+from brute_force import brute_force_closest_pair
+import time
 
-def quicksort(arr):
-    if len(arr) <= 1:
-        return arr
-    else:
-        pivot = arr[0]
-        left = []
-        right = []
-        for i in range(1, len(arr)):
-            if arr[i][0] < pivot[0]:
-                left.append(arr[i])
-            else:
-                right.append(arr[i])
-        return quicksort(left) + [pivot] + quicksort(right)
+# global count_euclidean_distance
 
-
-
-def dcd_closest_pair(arr_of_points, dimension):
+def dnc_closest_pair(arr_of_points, dimension):
     size = len(arr_of_points)
 
     if size <= 3:
-        min_dist = np.inf
-        closest_points = []
-        for i in range(size - 1):
-            for j in range(i+1, size):
-                min_dist, closest_points = get_min_dist(min_dist, closest_points, arr_of_points[i], arr_of_points[j])
-        
-        return min_dist, closest_points
+        return brute_force_closest_pair(arr_of_points, size)
     
-    arr_of_points = np.asarray(arr_of_points)
-    arr_of_points = quicksort(arr_of_points[arr_of_points[:,0]])
     x_median = arr_of_points[size//2][0]
-
-    # print(arr_of_points)
+    
     left_points, right_points = sorted_arr_divider(arr_of_points)
 
-    left_min_dist, left_closest_points  = dcd_closest_pair(left_points, dimension)
-    right_min_dist, right_closest_points= dcd_closest_pair(right_points, dimension)
+    left_min_dist, left_closest_points  = dnc_closest_pair(left_points, dimension)
+    right_min_dist, right_closest_points= dnc_closest_pair(right_points, dimension)
 
     min_dist, closest_points = get_min_dist_from_2(left_min_dist, left_closest_points, right_min_dist, right_closest_points)
 
-    left_hp = get_points_in_hyperplane(left_points, x_median, min_dist, lambda a, b: a < b)
-    right_hp = get_points_in_hyperplane(right_points, x_median, min_dist, lambda a, b: a <= b)
+    left_hp, right_hp = get_points_in_hyperplane(arr_of_points, x_median, min_dist)
 
     min_dist, array_of_closest = get_closest_in_hyperplane(left_hp, right_hp, min_dist, dimension, closest_points)
-
-    #return get_closest_in_hyperplane(left_hp, right_hp, min_dist, dimension, closest_points)
-    for i in range(len(array_of_closest)):
-        for j in range(len(array_of_closest[i])):
-            if isinstance(array_of_closest[i][j], np.ndarray):
-                array_of_closest[i][j] = array_of_closest[i][j].tolist()
 
     return min_dist, array_of_closest
 
 
-def random_point():
-    points = []
-    n = random.randint(2, 100)
-    for i in range(n):
-        x = random.uniform(0, 1)
-        y = random.uniform(0, 1)
-        z = random.uniform(0, 1)
-        point = (x, y, z)
-        points.append(point)
-    return points
-
-def tuple_to_arr(arr):
-    arrPoints = []
-    for i in range(len(arr)):
-        arrPoints.append(arr[i][0])
-        arrPoints.append(arr[i][1])
-    return arrPoints
-
-        
-points = random_point()
-min_dist, array_of_closest = dcd_closest_pair(points, 3)
 
 
-dcd_closest_pair(points, 3)
-arrPoints = tuple_to_arr(array_of_closest)
-visualization(points, arrPoints)
-print("jarak terdekatnya adalah:", min_dist)
-print("pasangan titik terdekat adalah:", array_of_closest)
-#print(array_of_closest)
-#print(len(array_of_closest))
-#print(arrPoints)
-#print(len(arrPoints))
-#print(len(arrPoints1))
+
+
+
+
+# # a = [[0, 1, 1], [0, 1, 2], [3, 2, 4], [0, 1, 6], [0, 2, 3], [1, 2, 3], [4, 3, 2]]
+# # for i in range(100):
+# # count_euclidean_distance = 0;
+# a = random_point(4, 10000)
+# a = np.asarray(a)
+# a = a[a[:,0].argsort(kind='mergesort')]
+# a = a.tolist()
+
+# # q, w, e, r, t = closest_points(a)
+
+# time_start = time.time()
+# min_dist, arr = dnc_closest_pair(a, 3);
+# time_finish = time.time()
+
+# timetaken = (time_finish - time_start)
+# from point import count_euclidean_distance
+# print(count_euclidean_distance)
+
+# # arrTemp = []
+# # for i in arr :
+# #     temp = []
+# #     for j in i :
+# #         temp = temp + [j]
+# #     arrTemp = arrTemp + [temp]
+
+# print(timetaken)
+# # if (t != min_dist):
+# #     print(t)
+# #     print(min_dist)
+# #     break
+
+# # print(t)
+# print(min_dist)
+# print(arr)
+# # print(arrTemp)
+# # print("\n")
+# # print(a[0])
+
+# # if arr[0][0]):
+# #     print("HORE")
+
+
+# # print(arr[0][0])
