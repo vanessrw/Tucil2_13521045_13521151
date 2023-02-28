@@ -16,10 +16,10 @@ def visualization(points, arrPoints):
             other_points.append(point)
     #for point in arrPoints:
         #selected_points.append(point)
-    print("points: ")
-    print(points)
-    print("arr points: ")
-    print(arrPoints)
+    #print("points: ")
+    #print(points)
+    #print("arr points: ")
+    #print(arrPoints)
 
     arrPoints3D = []
     for i in range(0, len(arrPoints), 3):
@@ -37,14 +37,14 @@ def visualization(points, arrPoints):
     # Add the point to the list of points
         arrPoints3D.append(point)
 
-    print(arrPoints3D)
+    #print(arrPoints3D)
 
     for point in arrPoints3D:
         if isinstance(point, (list, tuple)) and len(point) >= 3:
             x_coords_selected.append(point[0])
             y_coords_selected.append(point[1])
             z_coords_selected.append(point[2])
-    print(x_coords_selected, y_coords_selected, z_coords_selected)
+    #print(x_coords_selected, y_coords_selected, z_coords_selected)
     #x_coords_selected = [point[0] for point in arrPoints if isinstance(point, (list, tuple)) and len(point) >= 3]
     #y_coords_selected = [point[1] for point in arrPoints if isinstance(point, (list, tuple)) and len(point) >= 3]
     #z_coords_selected = [point[2] for point in arrPoints if isinstance(point, (list, tuple)) and len(point) >= 3]
