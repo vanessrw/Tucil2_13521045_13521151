@@ -49,12 +49,12 @@ def visual(points):
 
     plt.show()
 
-points = random_point()
-arrPoints1, arrPoints2, closest_p1, closest_p2, min_dist = closest_points(points)
+# points = random_point()
+# arrPoints1, arrPoints2, closest_p1, closest_p2, min_dist = closest_points(points)
 
-for i in range(len(arrPoints1)):
-    print("Titik terdekat ", i+1, ": ", arrPoints1[i], "dan", arrPoints2[i])
-    print("dengan jarak", min_dist)
+# for i in range(len(arrPoints1)):
+#     print("Titik terdekat ", i+1, ": ", arrPoints1[i], "dan", arrPoints2[i])
+#     print("dengan jarak", min_dist)
 
 #print("Titik terdekat : ", closest_p1, "dan", closest_p2)
 #print("dengan jarak", min_dist)
