@@ -19,8 +19,9 @@ Hasil akhir dari program ini berupa output jarak serta titik terdekat, dan gamba
 
 ## Cara Menggunakan Program
 1. Clone repository ini ke lokal
-2. Run `main.py`
+3. Buka terminal dan jalankan command `cd [jalur folder repository ini yang telah diunduh ke lokal] `
+2. Run `main.py` dengan menjalankan command `py src/main.py` di terminal
 
 ## Contributors :
-#### [Fakhri Muhammad Mahendra - 13521045]
-#### [Vanessa Rebecca Wiyono - 13521151]
+#### Fakhri Muhammad Mahendra - 13521045
+#### Vanessa Rebecca Wiyono - 13521151
