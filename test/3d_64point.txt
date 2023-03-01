@@ -1,0 +1,18 @@
+Masukan dimensi titik
+Masukan: 3
+
+Masukan jumlah titik
+Masukan: 64
+
+Dengan pendekatan brute force:
+Waktu dibutuhkan                    : 0.03211522102355957
+Jarak titik terdekat                : 8.295450560397553
+Operasi euclidean distance sebanyak : 2016
+Pasangan titik:
+[[79.39, -81.26, 42.85], [72.8, -84.68, 39.15]]
+
+Dengan pendekatan divide and conquer
+Waktu dibutuhkan                    : 0.0020127296447753906
+Jarak titik terdekat                : 8.295450560397553
+Pasangan titik:
+[[72.8, -84.68, 39.15], [79.39, -81.26, 42.85]]

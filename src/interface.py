@@ -1,5 +1,4 @@
 def get_int_input():
-    
     while True:
         num = input("Masukan: ")
         try:
@@ -18,7 +17,7 @@ def get_dimension_and_n():
     while True:
         print("Masukan dimensi titik")
         dimension = get_int_input()
-        if dimension >= 3:
+        if dimension >= 1:
             break
         print("\nDimensi harus bernilai lebih dari sama dengan 3")
 
