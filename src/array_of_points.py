@@ -47,7 +47,7 @@ def get_min_dist(min_dist, array_of_closest, point_1, point_2):
     return min_dist, array_of_closest
 
 def get_min_dist_from_2(min_dist_1, closest_point_1, min_dist_2, closest_point_2):
-    """Get minumun distance from comparing two minimum distance candidate
+    """Get minimum distance from comparing two minimum distance candidate
     and two accumulation array
 
     Args:
@@ -121,13 +121,24 @@ def get_points_near_hyperplane(points, hp_axis, delta):
     return left_hp, right_hp
 
 def get_closest_near_hyperplane(left_arr, right_arr, min_dist, array_of_closest):
+    """Compare current minimum distance to minimum distance found between
+    pair of points near hyperplane. Update the array_of_closest as accumulation
+    array accordingly
+
+    Args:
+        left_arr (_type_): _description_
+        right_arr (_type_): _description_
+        min_dist (_type_): _description_
+        array_of_closest (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     size_left = len(left_arr)
     size_right = len(right_arr)
     for i in range(size_left):
         for j in range(size_right):
-
             if is_projection_close(left_arr[i], right_arr[j], min_dist):
-
                 min_dist, array_of_closest = get_min_dist(min_dist, array_of_closest, left_arr[i], right_arr[j])
 
 
