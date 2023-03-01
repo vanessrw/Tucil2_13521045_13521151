@@ -33,9 +33,10 @@ def get_dimension_and_n():
 
     return dimension, points_count
 
-def output_format(time, min_distance, solution_array):
-    print(f"Waktu dibutuhkan: {time}")
-    print(f"Jarak titik terdekat: {min_distance}")
+def output_format(time, min_distance, euclidean_count, solution_array):
+    print(f"Waktu dibutuhkan                    : {time}")
+    print(f"Jarak titik terdekat                : {min_distance}")
+    print(f"Operasi euclidean distance sebanyak : {euclidean_count}")
     print("Pasangan titik:")
     for i in range(len(solution_array)):
         print(solution_array[i])

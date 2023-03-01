@@ -1,62 +1,30 @@
-import math
-import random
-import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-def visualization(points, arrPoints):
+def visualization(points, solution_pairs):
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
 
-    selected_points = []
-    other_points = []
     for point in points:
-        if point in arrPoints:
-            selected_points.append(point) 
+        ax.scatter(point[0], point[1], point[2], c='black')
+
+    for i, point in enumerate(solution_pairs):
+        if (i % 3) == 0:
+            ax.scatter(point[0][0], point[0][1], point[0][2], c='blue')
+            ax.scatter(point[1][0], point[1][1], point[1][2], c='blue')
+        elif (i % 3) == 1:
+            ax.scatter(point[0][0], point[0][1], point[0][2], c='green')
+            ax.scatter(point[1][0], point[1][1], point[1][2], c='green')
         else:
-            other_points.append(point)
-    #for point in arrPoints:
-        #selected_points.append(point)
-    #print("points: ")
-    #print(points)
-    #print("arr points: ")
-    #print(arrPoints)
+            ax.scatter(point[0][0], point[0][1], point[0][2], c='red')
+            ax.scatter(point[1][0], point[1][1], point[1][2], c='red')
 
-    arrPoints3D = []
-    for i in range(0, len(arrPoints), 3):
-        point = [arrPoints[i], arrPoints[i+1], arrPoints[i+2]]
-        arrPoints3D.append(point)
-    x_coords_selected = []
-    y_coords_selected = []
-    z_coords_selected = []
+        x = [point[0][0], point[1][0]] 
+        y = [point[0][1], point[1][1]] 
+        z = [point[0][2], point[1][2]] 
 
-    arrPoints3D = []
-# Iterate over arrPoints in steps of 3
-    for i in range(0, len(arrPoints), 3):
-    # Use a list comprehension to create a 3D point from the next three elements in arrPoints
-        point = [arrPoints[i], arrPoints[i+1], arrPoints[i+2]]
-    # Add the point to the list of points
-        arrPoints3D.append(point)
-
-    #print(arrPoints3D)
-
-    for point in arrPoints3D:
-        if isinstance(point, (list, tuple)) and len(point) >= 3:
-            x_coords_selected.append(point[0])
-            y_coords_selected.append(point[1])
-            z_coords_selected.append(point[2])
-    #print(x_coords_selected, y_coords_selected, z_coords_selected)
-    #x_coords_selected = [point[0] for point in arrPoints if isinstance(point, (list, tuple)) and len(point) >= 3]
-    #y_coords_selected = [point[1] for point in arrPoints if isinstance(point, (list, tuple)) and len(point) >= 3]
-    #z_coords_selected = [point[2] for point in arrPoints if isinstance(point, (list, tuple)) and len(point) >= 3]
-
-    x_coords_other = [point[0] for point in other_points if isinstance(point, (list, tuple)) and len(point) >= 3]
-    y_coords_other = [point[1] for point in other_points if isinstance(point, (list, tuple)) and len(point) >= 3]
-    z_coords_other = [point[2] for point in other_points if isinstance(point, (list, tuple)) and len(point) >= 3]
-
-    ax.scatter(x_coords_other, y_coords_other, z_coords_other, c='black')
-    ax.scatter(x_coords_selected, y_coords_selected, z_coords_selected, color='red')
+        ax.plot(x, y, z, color='black')
 
     ax.set_title("Scatter Plot of {} Random Points in 3D".format(len(points)))
     ax.set_xlabel("X Coordinates")

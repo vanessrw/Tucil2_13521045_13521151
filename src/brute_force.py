@@ -1,9 +1,10 @@
 from array_of_points import get_min_dist
 
-def brute_force_closest_pair(arr_of_points, size):
+def brute_force_closest_pair(arr_of_points):
     # Initialize variable
     min_dist = float('inf')
     closest_points = []
+    size = len(arr_of_points)
 
     # Iterate all possible pair combination
     for i in range(size - 1):
