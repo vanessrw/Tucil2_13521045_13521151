@@ -19,8 +19,3 @@ def is_projection_close(point_1, point_2, delta) -> bool:
             return False
         
     return True
-
-
-
-
-# print(euclidean_distance([1,1], [2,2]))

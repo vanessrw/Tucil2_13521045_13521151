@@ -6,17 +6,15 @@ Masukan jumlah titik
 Masukan: 16
 
 Dengan pendekatan brute force:
-Waktu dibutuhkan                    : 0.0009992122650146484
-Jarak titik terdekat                : 1.7320508075688772
-Operasi euclidean distance sebanyak : 6
+Waktu dibutuhkan                    : 0.0019872188568115234
+Jarak titik terdekat                : 11.066892065977692
+Operasi euclidean distance sebanyak : 120
 Pasangan titik:
-[[1, 1, 1], [2, 2, 2]]
-[[4, 4, 4], [5, 5, 5]]
+[[-81.2, -77.3, 45.16], [-78.19, -72.22, 35.8]]
 
 Dengan pendekatan divide and conquer
-Waktu dibutuhkan                    : 0.0
-Jarak titik terdekat                : 1.7320508075688772
-Operasi euclidean distance sebanyak : 2
+Waktu dibutuhkan                    : 0.00099945068359375
+Jarak titik terdekat                : 11.066892065977692
+Operasi euclidean distance sebanyak : 15
 Pasangan titik:
-[[1, 1, 1], [2, 2, 2]]
-[[4, 4, 4], [5, 5, 5]]
+[[-81.2, -77.3, 45.16], [-78.19, -72.22, 35.8]]

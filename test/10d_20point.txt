@@ -1,0 +1,20 @@
+Selamat datang di closest pair finder
+Masukan dimensi titik
+Masukan: 10
+
+Masukan jumlah titik
+Masukan: 20
+
+Dengan pendekatan brute force:
+Waktu dibutuhkan                    : 0.003995656967163086
+Jarak titik terdekat                : 117.29825488897949
+Operasi euclidean distance sebanyak : 190
+Pasangan titik:
+[[38.07, 82.22, 52.24, -12.07, 84.31, 58.26, 99.83, 91.82, -96.19, -22.28], [-26.97, 68.77, 74.96, 17.24, 93.95, 65.88, 78.35, 92.88, -19.51, 16.18]]  
+
+Dengan pendekatan divide and conquer
+Waktu dibutuhkan                    : 0.0019969940185546875
+Jarak titik terdekat                : 117.29825488897949
+Operasi euclidean distance sebanyak : 51
+Pasangan titik:
+[[-26.97, 68.77, 74.96, 17.24, 93.95, 65.88, 78.35, 92.88, -19.51, 16.18], [38.07, 82.22, 52.24, -12.07, 84.31, 58.26, 99.83, 91.82, -96.19, -22.28]]

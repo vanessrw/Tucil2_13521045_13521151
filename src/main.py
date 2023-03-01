@@ -45,6 +45,5 @@ def main():
     if dimension == 3:
         visualization(arr_points, bf_solution_pairs)
 
-
 if __name__ == '__main__':
     main()
